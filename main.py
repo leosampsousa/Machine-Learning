@@ -3,99 +3,141 @@ import numpy as np
 from sklearn.svm import SVC
 from sklearn.svm import SVR
 
+def getPrediction(prediction, tam):
+	if(prediction <= tam):
+		return "praia"
+	elif(prediction <= 2*tam):
+		return "floresta"
+	elif(prediction <= 3*tam):
+		return "urbana"
+	elif(prediction <= 4*tam):
+		return "oceano"
+	elif(prediction <= 5*tam):
+		return "deserto"
+	elif(prediction <= 6*tam):
+		return "polar"
+	elif(prediction <= 7*tam):
+		return "rural"
+
 # Read all images
+tam = 1
+vetor_nome = []
+vetor_teste_praias = []
+vetor_teste_praias_resized = []
+for i in range (tam):
+	aux = str(i+1)
+	vetor_teste_praias.append(cv2.imread('images/teste/praia' + aux + '.jpg'))
+	vetor_teste_praias_resized.append(cv2.resize(vetor_teste_praias[i], (10,10)))
+	vetor_nome.append("praia" + aux)
+vetor_teste_praias_resized = np.array(vetor_teste_praias_resized)
 
-'''
-praia_g = cv2.imread('images/treino/praia/praia.jpg')
-print(praia_g)
-cidade_g = cv2.imread('images/treino/cidade/cidade.jpg')
-floresta_g = cv2.imread('images/treino/floresta/floresta.jpg')
-'''
-test_praia_g = cv2.imread('images/teste/praia/praia.jpg')
-test_cidade_g = cv2.imread('images/teste/cidade/cidade.jpg')
-test_floresta_g = cv2.imread('images/teste/floresta/floresta.jpg')
-test_floresta2_g = cv2.imread('images/teste/floresta/floresta2.jpg')
-test_oceano_g = cv2.imread('images/teste/oceano/oceano1.jpg')
-test_polar_g = cv2.imread('images/teste/polar/polar1.jpg')
-test_rural_g = cv2.imread('images/teste/rural/rural1.jpg')
-test_deserto_g = cv2.imread('images/teste/deserto/deserto1.jpg')
+vetor_teste_florestas = []
+vetor_teste_florestas_resized = []
+for i in range (tam):
+	aux = str(i+1)
+	vetor_teste_florestas.append(cv2.imread('images/teste/floresta' + aux + '.jpg'))
+	vetor_teste_florestas_resized.append(cv2.resize(vetor_teste_florestas[i], (10,10)))
+	vetor_nome.append("floresta" + aux)
+vetor_teste_florestas_resized = np.array(vetor_teste_florestas_resized)
 
+vetor_teste_cidades = []
+vetor_teste_cidades_resized = []
+for i in range (tam):
+	aux = str(i+1)
+	vetor_teste_cidades.append(cv2.imread('images/teste/cidade' + aux + '.jpg'))
+	vetor_teste_cidades_resized.append(cv2.resize(vetor_teste_cidades[i], (10,10)))
+	vetor_nome.append("cidade" + aux)
+vetor_teste_cidades_resized = np.array(vetor_teste_cidades_resized)
 
+vetor_teste_oceano = []
+vetor_teste_oceano_resized = []
+for i in range (tam):
+	aux = str(i+1)
+	vetor_teste_oceano.append(cv2.imread('images/teste/oceano' + aux + '.jpg'))
+	vetor_teste_oceano_resized.append(cv2.resize(vetor_teste_oceano[i], (10,10)))
+	vetor_nome.append("oceano" + aux)
+vetor_teste_oceano_resized = np.array(vetor_teste_oceano_resized)
+
+vetor_teste_deserto = []
+vetor_teste_deserto_resized = []
+for i in range (tam):
+	aux = str(i+1)
+	vetor_teste_deserto.append(cv2.imread('images/teste/deserto' + aux + '.jpg'))
+	vetor_teste_deserto_resized.append(cv2.resize(vetor_teste_deserto[i], (10,10)))
+	vetor_nome.append("deserto" + aux)
+vetor_teste_deserto_resized = np.array(vetor_teste_deserto_resized)
+
+vetor_teste_polar = []
+vetor_teste_polar_resized = []
+for i in range (tam):
+	aux = str(i+1)
+	vetor_teste_polar.append(cv2.imread('images/teste/polar' + aux + '.jpg'))
+	vetor_teste_polar_resized.append(cv2.resize(vetor_teste_polar[i], (10,10)))
+	vetor_nome.append("polar" + aux)
+vetor_teste_polar_resized = np.array(vetor_teste_polar_resized)
+
+vetor_teste_rural = []
+vetor_teste_rural_resized = []
+for i in range (tam):
+	aux = str(i+1)
+	vetor_teste_rural.append(cv2.imread('images/teste/rural' + aux + '.jpg'))
+	vetor_teste_rural_resized.append(cv2.resize(vetor_teste_rural[i], (10,10)))
+	vetor_nome.append("rural" + aux)
+vetor_teste_rural_resized = np.array(vetor_teste_rural_resized)
+
+# ------------------------------------------------------
+
+tam = 10
 vetor_treino_praias = []
 vetor_treino_praias_resized = []
-for i in range (0,2):
+for i in range (0,tam):
 	aux = str(i+1)
 	vetor_treino_praias.append(cv2.imread('images/treino/praia' + aux + '.jpg'))
 	vetor_treino_praias_resized.append(cv2.resize(vetor_treino_praias[i], (10,10)))
 
 vetor_treino_florestas = []
 vetor_treino_florestas_resized = []
-for i in range (0,2):
+for i in range (0,tam):
 	aux = str(i+1)
 	vetor_treino_florestas.append(cv2.imread('images/treino/floresta' + aux + '.jpg'))
 	vetor_treino_florestas_resized.append(cv2.resize(vetor_treino_florestas[i], (10,10)))
 
 vetor_treino_cidades = []
 vetor_treino_cidades_resized = []
-for i in range (0,2):
+for i in range (0,tam):
 	aux = str(i+1)
-	vetor_treino_cidades.append(cv2.imread('images/treino/cidade' + aux + '.jpg'))
+	vetor_treino_cidades.append(cv2.imread('images/treino/urbana' + aux + '.jpg'))
 	vetor_treino_cidades_resized.append(cv2.resize(vetor_treino_cidades[i], (10,10)))
 
 vetor_treino_oceano = []
 vetor_treino_oceano_resized = []
-for i in range (0,2):
+for i in range (0,tam):
 	aux = str(i+1)
 	vetor_treino_oceano.append(cv2.imread('images/treino/oceano' + aux + '.jpg'))
 	vetor_treino_oceano_resized.append(cv2.resize(vetor_treino_oceano[i], (10,10)))
 
 vetor_treino_deserto = []
 vetor_treino_deserto_resized = []
-for i in range (0,2):
+for i in range (0,tam):
 	aux = str(i+1)
 	vetor_treino_deserto.append(cv2.imread('images/treino/deserto' + aux + '.jpg'))
 	vetor_treino_deserto_resized.append(cv2.resize(vetor_treino_deserto[i], (10,10)))
 
 vetor_treino_polar = []
 vetor_treino_polar_resized = []
-for i in range (0,2):
+for i in range (0,tam):
 	aux = str(i+1)
 	vetor_treino_polar.append(cv2.imread('images/treino/polar' + aux + '.jpg'))
 	vetor_treino_polar_resized.append(cv2.resize(vetor_treino_polar[i], (10,10)))
 
 vetor_treino_rural = []
 vetor_treino_rural_resized = []
-for i in range (0,2):
+for i in range (0,tam):
 	aux = str(i+1)
 	vetor_treino_rural.append(cv2.imread('images/treino/rural' + aux + '.jpg'))
 	vetor_treino_rural_resized.append(cv2.resize(vetor_treino_rural[i], (10,10)))
 
-
-#cv2.imshow("vetor praia ", vetor_treino_praias[1])
-#cv2.imshow("vetor floresta ", vetor_treino_florestas[1])
-#cv2.imshow("vetor floresta ", vetor_treino_cidades[1])
-#cv2.imshow("vetor floresta ", vetor_treino_deserto[1])
-#cv2.imshow("vetor floresta ", vetor_treino_oceano[1])
-#cv2.imshow("vetor floresta ", vetor_treino_polar[1])
-#cv2.imshow("vetor floresta ", vetor_treino_rural[1])
-
 # Resize images to 10px x 10px
-
-
-'''
-treino_praia = cv2.resize(praia_g, (10,10))
-treino_cidade = cv2.resize(cidade_g, (10,10))
-treino_floresta = cv2.resize(floresta_g, (10,10))
-'''
-
-test_praia = cv2.resize(test_praia_g, (10,10))	
-test_floresta = cv2.resize(test_floresta_g, (10,10))
-test_floresta2 = cv2.resize(test_floresta2_g, (10,10))
-test_oceano = cv2.resize(test_oceano_g, (10,10))
-test_polar = cv2.resize(test_polar_g, (10,10))
-test_cidade = cv2.resize(test_cidade_g, (10,10))
-test_rural = cv2.resize(test_rural_g, (10,10))
-test_deserto = cv2.resize(test_deserto_g, (10,10))
 
 '''
 # Concat all arrays to one
@@ -109,7 +151,10 @@ X = np.concatenate((vetor_treino_praias_resized, vetor_treino_cidades_resized, v
 	 						vetor_treino_polar_resized, vetor_treino_rural_resized), axis=0)
 
 # Create index to arrays
-y = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+y = []
+for i in range(7*tam):
+	y.append(i+1)
+#y = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
 
 # Set y as a array
 y = np.array(y)
@@ -132,38 +177,13 @@ classifier_linear.fit(X,Y)
 print('Finished train')
 print(40 * '-')
 
-# Predict the category of image 
-prediction = classifier_linear.predict(test_rural.reshape(1,-1))
+# ---------------------------------------------------------
 
-# Score of predict 
-score = classifier_linear.score(X,Y)
+vetor_teste = np.concatenate((vetor_teste_praias_resized, vetor_teste_cidades_resized, vetor_teste_florestas_resized, 
 
-# Show prediction
-print('Result: {}'.format(prediction))
+							vetor_teste_oceano_resized, vetor_teste_deserto_resized,
 
-# Show prediction score
-print('Score of precision: {:.1f}%'.format(score * 100))
+	 						vetor_teste_polar_resized, vetor_teste_rural_resized), axis=0)
 
-# Set result as image of prediction
-if prediction <=2 :
-	print("é da classe praia")
-elif prediction <=4:
-	print("é da classe cidade")
-elif prediction <= 6:
-	print("é da classe floresta")
-elif prediction <= 8:
-	print("é da classe oceano")
-elif prediction <= 10:
-	print("é da classe deserto")
-elif prediction <= 12:
-	print("é da classe polar")
-elif prediction <= 14:
-	print("é da classe rural")
-
-# Show image based on prediction
-#cv2.imshow("Resultado do Algoritmo", result)
-# Show the image tested
-#cv2.imshow("Imagem passada no teste", test_floresta2_g)
-# Wait for key
-cv2.waitKey(0)
-
+for i in range(len(vetor_teste)):
+	print(vetor_nome[i] + " é " + getPrediction(classifier_linear.predict(vetor_teste[i].reshape(1,-1)), tam))
