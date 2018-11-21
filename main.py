@@ -20,7 +20,7 @@ def getPrediction(prediction, tam):
 		return "rural"
 
 # Read all images
-tam = 1
+tam = 5
 vetor_nome = []
 vetor_teste_praias = []
 vetor_teste_praias_resized = []
@@ -44,9 +44,9 @@ vetor_teste_cidades = []
 vetor_teste_cidades_resized = []
 for i in range (tam):
 	aux = str(i+1)
-	vetor_teste_cidades.append(cv2.imread('images/teste/cidade' + aux + '.jpg'))
+	vetor_teste_cidades.append(cv2.imread('images/teste/urbana' + aux + '.jpg'))
 	vetor_teste_cidades_resized.append(cv2.resize(vetor_teste_cidades[i], (10,10)))
-	vetor_nome.append("cidade" + aux)
+	vetor_nome.append("urbana" + aux)
 vetor_teste_cidades_resized = np.array(vetor_teste_cidades_resized)
 
 vetor_teste_oceano = []
@@ -87,53 +87,53 @@ vetor_teste_rural_resized = np.array(vetor_teste_rural_resized)
 
 # ------------------------------------------------------
 
-tam = 10
+tam = 5
 vetor_treino_praias = []
 vetor_treino_praias_resized = []
 for i in range (0,tam):
-	aux = str(i+1)
+	aux = str(i+6)
 	vetor_treino_praias.append(cv2.imread('images/treino/praia' + aux + '.jpg'))
 	vetor_treino_praias_resized.append(cv2.resize(vetor_treino_praias[i], (10,10)))
 
 vetor_treino_florestas = []
 vetor_treino_florestas_resized = []
 for i in range (0,tam):
-	aux = str(i+1)
+	aux = str(i+6)
 	vetor_treino_florestas.append(cv2.imread('images/treino/floresta' + aux + '.jpg'))
 	vetor_treino_florestas_resized.append(cv2.resize(vetor_treino_florestas[i], (10,10)))
 
 vetor_treino_cidades = []
 vetor_treino_cidades_resized = []
 for i in range (0,tam):
-	aux = str(i+1)
+	aux = str(i+6)
 	vetor_treino_cidades.append(cv2.imread('images/treino/urbana' + aux + '.jpg'))
 	vetor_treino_cidades_resized.append(cv2.resize(vetor_treino_cidades[i], (10,10)))
 
 vetor_treino_oceano = []
 vetor_treino_oceano_resized = []
 for i in range (0,tam):
-	aux = str(i+1)
+	aux = str(i+6)
 	vetor_treino_oceano.append(cv2.imread('images/treino/oceano' + aux + '.jpg'))
 	vetor_treino_oceano_resized.append(cv2.resize(vetor_treino_oceano[i], (10,10)))
 
 vetor_treino_deserto = []
 vetor_treino_deserto_resized = []
 for i in range (0,tam):
-	aux = str(i+1)
+	aux = str(i+6)
 	vetor_treino_deserto.append(cv2.imread('images/treino/deserto' + aux + '.jpg'))
 	vetor_treino_deserto_resized.append(cv2.resize(vetor_treino_deserto[i], (10,10)))
 
 vetor_treino_polar = []
 vetor_treino_polar_resized = []
 for i in range (0,tam):
-	aux = str(i+1)
+	aux = str(i+6)
 	vetor_treino_polar.append(cv2.imread('images/treino/polar' + aux + '.jpg'))
 	vetor_treino_polar_resized.append(cv2.resize(vetor_treino_polar[i], (10,10)))
 
 vetor_treino_rural = []
 vetor_treino_rural_resized = []
 for i in range (0,tam):
-	aux = str(i+1)
+	aux = str(i+6)
 	vetor_treino_rural.append(cv2.imread('images/treino/rural' + aux + '.jpg'))
 	vetor_treino_rural_resized.append(cv2.resize(vetor_treino_rural[i], (10,10)))
 
