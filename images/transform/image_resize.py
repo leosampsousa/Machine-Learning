@@ -30,8 +30,8 @@ def resizeImage(file, input_dir, output_dir, size=(200,200)):
 
 # -------------------- #
 
-input_dir = os.getcwd() + "/unresized/urbana/"
-output_dir = os.getcwd() + "/resized/urbana/"
+input_dir = os.getcwd() + "/unresized/deserto/"
+output_dir = os.getcwd() + "/resized/deserto/"
 
 # create folder 'unresized' if not exists
 if not os.path.exists(output_dir):
